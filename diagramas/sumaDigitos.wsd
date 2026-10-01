@@ -1,0 +1,30 @@
+@startuml "Diagrama de Flujo - sumaDigitos"
+
+title Diagrama de Flujo: Función sumaDigitos(n)
+
+start
+
+:Recibir número entero **n**;
+
+if (**n < 10**) then (Sí [Caso Base])
+    :- Retornar **n**\n- Terminar esta llamada;
+    detach
+else (No [Paso Recursivo])
+    :Separar último dígito:\n**ultimo = n % 10**;
+    :Quitar último dígito:\n**resto = n / 10**;
+    
+    partition "Llamada Recursiva" {
+        :Llamar a **sumaDigitos(resto)**;
+        note right
+            La función se pausa aquí
+            y abre una nueva instancia
+            en la memoria.
+        end note
+    }
+    
+    :Sumar **ultimo** + resultado de la llamada;
+    :Retornar el **resultado total**;
+endif
+
+end
+@enduml

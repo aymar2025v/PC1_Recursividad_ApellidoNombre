@@ -1,0 +1,28 @@
+@startuml "Diagrama de Flujo - Busqueda Binaria"
+
+title Diagrama de Flujo: Búsqueda Binaria con Contador de Comparaciones
+
+start
+
+:Recibir **arr** (vector) y **obj** (elemento a buscar);
+
+:Inicializar variables:\n- **bajo = 0**\n- **alto = arr.size() - 1**\n- **comparaciones = 0**;
+
+while (**bajo <= alto**) is (Sí [Continuar búsqueda])
+    :Incrementar **comparaciones++**;
+    :Calcular índice del medio:\n**medio = (bajo + alto) / 2**;
+    
+    if (**arr[medio] == obj**) then (Sí [Encontrado])
+        :- Retornar par **{medio, comparaciones}**;
+        detach
+    elseif (**arr[medio] < obj**) then (Sí)
+        :Buscar en la mitad derecha:\n**bajo = medio + 1**;
+    else (No)
+        :Buscar en la mitad izquierda:\n**alto = medio - 1**;
+    endif
+endwhile (No [No está en el vector])
+
+:Elemento no encontrado;\n- Retornar par **{-1, comparaciones}**;
+
+end
+@enduml
